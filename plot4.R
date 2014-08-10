@@ -1,0 +1,27 @@
+png(filename="C:/Users/wner/Documents/plot4.png")
+power <-read.csv("hpc.csv", header = TRUE)
+power2 <- power[order(power$Date,power$Time),]
+par(mfrow = c(2,2), mar =c(2,4,2,2))
+par(col="black")
+GAP <- power2$Global_active_power
+hist(GAP,xlab = "Global Active Power (kilowatts)", main = "Global Active Power", col = "red") 
+VOL <- power$Voltage
+plot(VOL, axes=FALSE, type="l", ylab="Voltage", xlab="datetime")
+axis(2)
+axis(1, at=seq(1, 4320, by=4320/3), c("Thur", "Fri", "Sat"))
+box() 
+par(col = "blue")
+plot(sm3, axes=FALSE, type="l", ylab="Energy sub metering", xlab="")
+points(sm2, col ="red", type = "l")
+points(sm1, col = "black", type = "l")
+axis(1, at=seq(1, 4320, by=4320/3), c("Thur", "Fri", "Sat"))
+axis(2, yaxp = c(0, 20, 4))
+box()
+legend("topright", text.col = "black", col = c("black","red","blue"),lty = 1, legend = c("Sub_metering_1", "Sub_metering_2","Sub_metering_3"), cex=0.5)
+par(col="black")
+GRP <- power$Global_reactive_power
+plot(GRP, axes=FALSE, type="l", ylab="Global_reactive_power", xlab="datetime")
+axis(2)
+axis(1, at=seq(1, 4320, by=4320/3), c("Thur", "Fri", "Sat"))
+box()
+dev.off()

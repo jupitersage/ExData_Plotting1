@@ -1,0 +1,12 @@
+png(filename="C:/Users/wner/Documents/plot3.png")
+power <-read.csv("hpc.csv", header = TRUE)
+power2 <- power[order(power$Date,power$Time),]
+par(col = "blue")
+plot(sm3, axes=FALSE, type="l", ylab="Energy sub metering", xlab="")
+points(sm2, col ="red", type = "l")
+points(sm1, col = "black", type = "l")
+axis(1, at=seq(1, 4320, by=4320/3), c("Thur", "Fri", "Sat"))
+axis(2, yaxp = c(0, 20, 4))
+box()
+legend("topright", text.col = "black", col = c("black","red","blue"),lty = 1, legend = c("Sub_metering_1", "Sub_metering_2","Sub_metering_3"), cex=0.5)
+dev.off()
